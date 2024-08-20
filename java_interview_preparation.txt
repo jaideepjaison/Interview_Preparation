@@ -1,0 +1,164 @@
+Different data types in Java:
+
+Primitive Data Type:
+
+boolean: stores value true or false
+byte: stores an 8-bit signed two’s complement integer
+char: stores a single 16-bit Unicode character
+short: stores a 16-bit signed two’s complement integer
+int: stores a 32-bit signed two’s complement integer
+long: stores a 64-bit two’s complement integer
+float: stores a single-precision 32-bit 
+double: stores a double-precision 64-bit 
+
+Pillars of OOPs :
+
+Abstraction - hiding the content
+Encapsulation - combining everything
+Inheritance - single, muti level, hirachical  - Ex : https://www.javatpoint.com/inheritance-in-java
+Polymorphism - many forms- for ex : in  a family father,is a husband and emplyee
+
+
+Difference between Spring and Spring boot :
+
+Spring:
+1)Developer need to do manual setup like db, dependenct etc
+2)Need to define dependencys
+3)does not provide memory databse
+4)need to do dependency injection
+
+Spring Boot:
+1) No need, alredy auto processed
+2)alredy handles everything
+3) its provides
+4) Auto Configured
+
+ReactJS ---------------------
+
+ReactJS Virtual DOM :
+1)Document Object Model that represents the content of XML or HTML
+2) Virtual DOM is an in-memory representation of the DOM
+3) tree structure so that the programs can be read, accessed and changed in the document structure, style, and content
+
+ReactJS components (functional components) :
+It uses JavaScript functions, but work in isolation and return HTML.
+
+Unit testing experience in junit :
+developers can run unit tests on each software component before it goes to testers. Tests are run quickly, and failed tests are listed separately for easy debugging. Besides manual testing, JUnit is preferred equally for automation testing.
+
+Rest API :
+a) REST stands for Representational State Transfer and uses HTTP protocol for implementation. 
+b) These services are lightweight, provide maintainability, scalability, support communication among multiple applications that are developed using different programming languages. 
+
+unit testing latest versions :
+- JUnit 5 - This includes focusing on Java 8 and above, as well as enabling many different styles of testing
+- it executes the block of code
+
+CI / CD :______________________
+Continuous integration (CI) executes the sequence of steps required to build and test the project. CI runs automatically on every change committed to a shared repository, offering developers quick feedback about the project’s state.
+
+Continuous delivery is an extension of CI. Its goal is to automate every step required to package and release a piece of software. The output of a continuous delivery pipeline takes the form of a deployable binary, package, or container.
+
+Continuous deployment is an optional step-up from continuous delivery. It is a process that takes the output from the delivery pipeline and deploys it to the production system in a safe and automated way.
+
+Ex : Jenkins
+
+Java Web Services Tutorial __________
+Java web services tutorial provides concepts and examples of two main java web services api: JAX-WS and JAX-RS. 
+
+JAX-RS: for RESTful web services. There are mainly 2 implementation currently in use for creating JAX-RS application: Jersey and RESTeasy.
+
+
+---------- Spring boot Interview Questions. -------------
+
+1) slf4j - for loging, adding dependency in pom.xml
+
+2) server.port=8082 is to change port number
+
+3) how to diable the tomcat server -
+	a) using exclude in pom.xml, it will disable the tomcat server
+	-  <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+        </exclusions>
+	b) in properties or yml we can using this to NONE
+		- spring.main.web-application-type=NONE
+
+4) @Rest Controller vs @controller -
+	- @Rest Controller return data directly, and this data is automatically converted to JSON or XML using message converters.
+	- @controller it resturn string format in the UI page 
+
+5) @RequestMapping vs  @GetMapping
+	- @RequestMapping is the main api url
+	- @RequestMapping it can be used to map different types of HTTP requests (e.g., GET, POST, PUT, DELETE, etc. 
+
+	-  @GetMapping is having optional to create api url
+	- @GetMapping annotation is a shortcut for @RequestMapping that is specifically designed to handle HTTP GET requests
+
+6) WAR (Web Application Archive) vs Embeded contains
+	- In Spring Boot, the terms WAR (Web Application Archive) and embedded containers refer to two different approaches for deploying and running your applications.
+	- A WAR file is a packaged web application that can be deployed to an external application server like Tomcat, Jetty, WebSphere, or JBoss. Traditionally, Java web applications were built as WAR files and deployed to a servlet container or application server.
+	- An embedded container is a servlet container (like Tomcat, Jetty, or Undertow) that is included in your Spring Boot application as a dependency. This allows your application to run as a standalone JAR file with the server embedded inside it.
+
+7) how to check environment property ?
+	- environment properties are a key part of how you configure your application across different environments (e.g., development, testing, production).
+	- In a Spring Boot application, you can check or access environment properties in several ways. These properties could come from various sources such as application.properties, application.yml, environment variables, or system propertie
+	- @value and Environment (java inbuilt class) to print the environment property
+
+8) Dev tools
+	- it helps to reload the aplication in lesser time
+
+9 Code coverage is a metric used in software testing to measure the percentage of source code that is executed during testing. (90%)
+
+10) what is the use of pom.xml
+	-(Project Object Model) file is a core configuration file in Maven, a build automation and dependency management tool used primarily for Java projects.
+	- The pom.xml file defines the project's configuration, including its dependencies, build plugins, and other settings that Maven uses to manage the project's build lifecycle.
+	- having Project Information, Profiles (customize the build process for different environments eg dev, SIT, Prod)
+
+11) @component and @bean in spring boot
+	- @Component is a generic stereotype annotation that marks a class as a Spring-managed component (or bean). It allows Spring to automatically detect and register the class as a bean in the Spring ApplicationContext during component scanning.
+	- @Bean is used for manual registration of beans within a @Configuration class. (eg. it will call the another class with @Bean annotations)
+
+12) How to identify which profiles are currently active or not
+	- using environment class inside that environment.getActiveProfiles() method using, String [] return type
+
+13) Best practice for Rest API-
+	Porper HTTP method, like status code 200 etc
+		Status code:
+			1xx: Informational Responses - 100 Continue, 102 Processing
+			2xx: Success- 200 OK, 201 Created, 202 Accepted
+			3xx: Redirection - 300 Multiple Choices: The request has more than one possible response, and the client should choose one.
+			4xx: Client Errors - 400 Bad Request , 401 Unauthorized, 403 Forbidden, 404 Not Found, 405 Method Not Allowed: The request method (e.g., GET, POST) is not allowed for the specified resource.
+			500 Internal Server Error: General server error.
+
+14) Multi theading 
+	- Multithreading in Spring Boot refers to the ability to execute multiple threads concurrently within a Spring Boot application. This allows the application to perform multiple tasks simultaneously, improving efficiency and performance, especially in applications that handle many requests or perform time-consuming operations like file processing, API calls, or database transactions.
+
+15) How to test static method
+	- The simplest way to test a static method is to call it directly from your test class and assert the expected results. Since static methods don't depend on instance variables, they are usually deterministic and can be tested directly.
+	- Directly calling the class name, along with Method
+
+16) what is the diffrece bethod abstract class and interface
+	- Constructor injection and setter injection are two common dependency injection (DI) techniques used in Spring to provide dependencies to a class. 
+	_ passing dependencies to a class through its constructor (class name) , constructor dependency is better becaise Immutability - it will take all the dependency, Mandatory Dependencies, Testing
+	- Setter injection involves providing dependencies to a class through setter methods after the object has been created. and its Less Immutability, Null Values
+
+17) Static variable:
+
+	static int a=0;
+
+	suppose ur updating the obj1.a=10 and once gain obj2.a=20. then final value for obj1 and obj2 is 20, because its shared. once it will update it will effect to all the variable 'a'.
+
+18)Static method:
+	- we cannot call non static variables in static method. 
+	- if we want to call non static method we need to pass the object.
+
+19) Memory Areas in Java:
+	Heap 	- The heap is where all Java objects are stored
+		- This is the primary area of memory managed by the JVM's garbage collector.
+	Stack   -The stack stores method frames, which include local variables, method arguments, and return values. 
+	PC Register (Program Counter Register) -The PC register holds the address of the current instruction being executed for each thread. Each thread has its own PC register.
+
+20)
