@@ -182,4 +182,26 @@ Uses components
 Better performance
 Better for large enterprise applications
 
-2.
+2. Typescript
+	- storng and strict 
+	- Superset of javascript
+	- Object oriented
+	- detect error at runtime
+		let someVal : string ="test1";
+3. Component
+	- Its a basic building block of angular
+	- .css, .html, .tx and .spec.ts
+	-.spect.ts is used for unit test cases, can be wriiten in javascript and typescript
+	- ng gc example1
+
+4. Selector and Template
+	- selector : 'app-root' then <app-root></app-root>
+	- templateUrl : '.app.component.html'
+
+5. Module
+	declaration:
+	- Module can have mutiple component
+	imports
+	- Browsermodule - this is default, service data to lunch the application
+	- App Routing module
+	
