@@ -61,7 +61,7 @@ Continuous delivery is an extension of CI. Its goal is to automate every step re
 
 Continuous deployment is an optional step-up from continuous delivery. It is a process that takes the output from the delivery pipeline and deploys it to the production system in a safe and automated way.
 
-Ex : Jenkins
+Ex : Jenkins, GitHub actions
 
 Java Web Services Tutorial __________
 Java web services tutorial provides concepts and examples of two main java web services api: JAX-WS and JAX-RS. 
@@ -140,7 +140,7 @@ JAX-RS: for RESTful web services. There are mainly 2 implementation currently in
 	- The simplest way to test a static method is to call it directly from your test class and assert the expected results. Since static methods don't depend on instance variables, they are usually deterministic and can be tested directly.
 	- Directly calling the class name, along with Method
 
-16) what is the diffrece bethod abstract class and interface
+16) what is the diffrece method abstract class and interface
 	- Constructor injection and setter injection are two common dependency injection (DI) techniques used in Spring to provide dependencies to a class. 
 	_ passing dependencies to a class through its constructor (class name) , constructor dependency is better becaise Immutability - it will take all the dependency, Mandatory Dependencies, Testing
 	- Setter injection involves providing dependencies to a class through setter methods after the object has been created. and its Less Immutability, Null Values
@@ -161,4 +161,25 @@ JAX-RS: for RESTful web services. There are mainly 2 implementation currently in
 	Stack   -The stack stores method frames, which include local variables, method arguments, and return values. 
 	PC Register (Program Counter Register) -The PC register holds the address of the current instruction being executed for each thread. Each thread has its own PC register.
 
-20)
+20) 
+
+############# Angular Interview Questions #############
+
+1. Diffrent b/w angular vs angular js
+
+	AngularJS
+
+Released in 2010
+Uses JavaScript
+Suitable for small applications
+Uses controllers and $scope
+
+Angular
+
+Released in 2016 as a complete rewrite
+Uses TypeScript
+Uses components
+Better performance
+Better for large enterprise applications
+
+2.
