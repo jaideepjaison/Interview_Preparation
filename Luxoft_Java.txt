@@ -1,0 +1,25 @@
+##########Java##########
+
+1. Features of java 17
+2. Difference between java 8 and java 17
+3. How garbase collector works
+4. what is Record
+5. Solid Principles
+6. Design Pattern
+7. ClassNotFoundException and NoClassDefFoundError
+8. how to make class immutable
+9. 
+
+#####Spring Boot##########
+1. Scope of Spring
+2. 
+
+#######database############
+1. Inner Join vs Outer Join
+2. Primary Key vs Unique Key
+3. How to do you connect multiple database in a micro service
+4. How to do you make default database in a microservice
+5. 
+
+######Coding#############
+1. Create a List of Integer
