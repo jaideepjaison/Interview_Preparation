@@ -1,25 +1,113 @@
 ##########Java##########
 
 1. Features of java 17
-2. Difference between java 8 and java 17
+    Record, Sealed Class, Switch Expression, Text Box (use for json by """  """), Enhanced Garbage Collector, LTS (Long Term Support)
+2. Java 11 Features
+    Java 11 is a Long-Term Support release that introduced several useful features, including the new HTTP Client API, 
+    enhanced String methods such as isBlank(), lines(), strip(), and repeat(), new file utility methods like Files.readString() 
+    and Files.writeString(), the ability to run Java source files directly without separate compilation, local variable syntax for lambda parameters,
+     and the Z Garbage Collector. These features improve developer productivity, simplify coding, and enhance application performance and security.
+
 3. How garbase collector works
+   Garbage Collection is the JVM process that automatically reclaims heap memory occupied by objects that are no longer reachable. 
+   The JVM identifies live objects by starting from GC Roots such as local variables, static references, and active threads. 
+   Reachable objects are retained, while unreachable objects are eligible for collection. Java uses a generational heap structure 
+   with Young and Old generations. Minor GC cleans the Young Generation, while Major/Full GC cleans the Old Generation. 
+   This automatic memory management helps prevent memory leaks and removes the need for manual memory deallocation.
+
 4. what is Record
+    -special type of class used to create immutable data objects with very little code.
+    - public record Employee(
+        Long id,
+        String name) {}
+    - Java automatically generates:
+        Constructor
+        Getters
+        toString()
+        equals()
+        hashCode()
+
 5. Solid Principles
+    - Single Responsibility Principle → One class, one responsibility
+    - Open/ close p  → Extend functionality without modifying existing code
+    - Liskov substitution → Child class should replace parent without breaking behavior
+    - Interface segregation Priciple → Don't force classes to implement unnecessary methods
+    - Dependency Inversion Principle → Depend on interfaces, not concrete implementations
+
 6. Design Pattern
+    Design Patterns are reusable solutions to common software design problems. They help create maintainable, scalable, and loosely coupled applications.
+    Design patterns are generally categorized into Creational, Structural, and Behavioral patterns. Common patterns used in Java and Spring Boot include
+    Singleton for single-instance beans, Factory for object creation, Builder for constructing complex objects, Strategy for selecting algorithms at runtime, 
+    Observer for event-driven communication, Adapter for integrating incompatible systems, and Facade for providing a simplified interface to complex subsystems.
+
 7. ClassNotFoundException and NoClassDefFoundError
+    ClassNotFoundException is a checked exception that occurs when the JVM is explicitly asked to load a class at runtime using 
+    mechanisms like Class.forName(), but the class is not found in the classpath. NoClassDefFoundError is an error that occurs 
+    when a class was available during compilation but cannot be found by the JVM at runtime. In short, ClassNotFoundException 
+    happens during dynamic class loading, while NoClassDefFoundError indicates that a previously available class is missing when the application executes.
+
 8. how to make class immutable
-9. 
+    - Its Instant cannot be modifield once its created
+    - Any class cannot be inherited or extend this class
+    - using public final class Main{}
+    - All the field should be private and no setters allowed
+
+9. Extends
+    extends is used to achieve inheritance in Java. It allows a child class to inherit fields and methods from a parent class, 
+    promoting code reuse and establishing an "is-a" relationship. For example, Dog extends Animal means Dog is an Animal and can 
+    use all non-private members of the Animal class. Java supports single inheritance for classes, meaning a class can extend only one parent class.
+
+10. Abstract Class
+    An abstract class is a class declared with the abstract keyword that cannot be instantiated directly. 
+    It can contain both abstract methods (without implementation) and concrete methods (with implementation). 
+    Abstract classes are used when multiple related classes share common behavior but require different implementations for certain 
+    methods. A child class extends the abstract class and provides implementations for all abstract methods. This helps achieve abstraction and code reuse.
+
+11. interface
+    An interface is a contract that defines method declarations without specifying their implementation. Any class that implements the interface 
+    must provide implementations for all its methods. Interfaces help achieve abstraction, loose coupling, polymorphism, and multiple inheritance of behavior. 
+    In Spring Boot, interfaces are commonly used with Dependency Injection, where services depend on interfaces rather than concrete implementations.
+
 
 #####Spring Boot##########
 1. Scope of Spring
+    Spring Bean Scope defines the lifecycle and visibility of a bean. The most common scope is Singleton, where a single bean instance is shared across 
+    the application. Prototype creates a new bean instance each time it is requested. Request scope creates one bean per HTTP request, Session scope creates 
+    one bean per user session, and Application scope creates one bean for the entire web application. Singleton is the default scope used by Spring.
 2. 
 
 #######database############
 1. Inner Join vs Outer Join
+    An INNER JOIN returns only the rows that have matching values in both tables. An OUTER JOIN returns matching rows along with 
+    non-matching rows from one or both tables. LEFT JOIN returns all rows from the left table, RIGHT JOIN returns all rows from 
+    the right table, and FULL OUTER JOIN returns all rows from both tables. For example, in an e-commerce application, an 
+    INNER JOIN can be used to fetch customers who placed orders, while a LEFT JOIN can be used to fetch all customers including 
+    those who have not placed any orders.
+
 2. Primary Key vs Unique Key
+    A Primary Key uniquely identifies each row in a table and cannot contain NULL values. A table can have only one Primary Key.
+     A Unique Key also enforces uniqueness but is not the main identifier of the table. Multiple Unique Keys can exist in a table, 
+     and depending on the database, a Unique Key may allow NULL values. For example, customer_id is typically a Primary Key, while 
+     email and phone_number, adhar_number are often Unique Keys.
+
 3. How to do you connect multiple database in a micro service
+    - In Spring Boot, multiple databases can be connected by defining separate datasource configurations. 
+    For different database types such as MySQL and MongoDB, Spring Data automatically routes JPA repositories 
+    to MySQL and Mongo repositories to MongoDB. For multiple relational databases, separate DataSources, 
+    EntityManagerFactories, TransactionManagers, and repository packages must be configured. In microservices, 
+    the preferred approach is usually one database per service, but multiple databases can be used when different
+     storage technologies serve different purposes.
+
 4. How to do you make default database in a microservice
-5. 
+    - If I want to disable one of the databases in a Spring Boot application, I can exclude its auto-configuration classes using exclude in @SpringBootApplication, or more commonly, 
+    use Spring Profiles to load only the desired database configuration.
+    - If two mysql db connect to ur spring boot, u can use @Primary to make it default db
+
+5. ACID propertie
+    ACID is a set of properties that guarantee reliable database transactions. Atomicity ensures that all operations in a transaction succeed or 
+    all are rolled back. Consistency ensures that the database remains in a valid state before and after a transaction. Isolation ensures that concurrent 
+    transactions do not interfere with each other. Durability guarantees that once a transaction is committed, the data is permanently stored even in case 
+    of system failures.
 
 ######Coding#############
 1. Create a List of Integer
