@@ -109,5 +109,18 @@
     transactions do not interfere with each other. Durability guarantees that once a transaction is committed, the data is permanently stored even in case 
     of system failures.
 
+Load balancer
+-A Load Balancer distributes incoming requests across multiple server instances so that no single server becomes overloaded.
+With Load Balancer
+              Users
+                |
+                v
+          Load Balancer
+          /     |      \
+         /      |       \
+        v       v        v
+   Server1  Server2  Server3
+- How Does It Decide? - It serves based on rotation or Send the request to the server with the fewest active connections, and Load Balancer continuously checks whether servers are alive.
+
 ######Coding#############
 1. Create a List of Integer
