@@ -43,8 +43,11 @@
 7. ClassNotFoundException and NoClassDefFoundError
     ClassNotFoundException is a checked exception that occurs when the JVM is explicitly asked to load a class at runtime using 
     mechanisms like Class.forName(), but the class is not found in the classpath. NoClassDefFoundError is an error that occurs 
+    ClassNotFoundException - while in ide editor, unable to find it
+
     when a class was available during compilation but cannot be found by the JVM at runtime. In short, ClassNotFoundException 
     happens during dynamic class loading, while NoClassDefFoundError indicates that a previously available class is missing when the application executes.
+    NoClassDefFoundError - unable to load while application is running (successfully present during compilation, but when the program actually runs and tries to execute code using that class, the file has suddenly disappeared or failed to initialize.)
 
 8. how to make class immutable
     - Its Instant cannot be modifield once its created
@@ -57,16 +60,181 @@
     promoting code reuse and establishing an "is-a" relationship. For example, Dog extends Animal means Dog is an Animal and can 
     use all non-private members of the Animal class. Java supports single inheritance for classes, meaning a class can extend only one parent class.
 
+    // 1. The Parent Class (Superclass)
+class Animal {
+    // Fields
+    public String name; // Accessible everywhere
+    protected int age;  // Accessible by child classes
+
+    // Constructor
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method
+    public void eat() {
+        System.out.println(name + " is eating food.");
+    }
+}
+
+// 2. The Child Class (Subclass) using 'extends'
+// This establishes the "Dog IS-A Animal" relationship
+class Dog extends Animal {
+    
+    // Child can have its own unique fields
+    private String breed;
+
+    // Constructor
+    public Dog(String name, int age, String breed) {
+        // 'super' passes the arguments to the parent class constructor
+        super(name, age); 
+        this.breed = breed;
+    }
+
+    // Child can have its own unique methods
+    public void bark() {
+        System.out.println(name + " says: Woof! Woof!");
+    }
+
+    // Demonstrating access to inherited members
+    public void displayDetails() {
+        // Can access 'name' because it is public in Animal
+        System.out.println("Dog's Name: " + name);
+        
+        // Can access 'age' because it is protected in Animal
+        System.out.println("Dog's Age: " + age + " years old");
+        
+        System.out.println("Dog's Breed: " + breed);
+    }
+}
+
+// 3. Execution Main Class
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog("Buddy", 3, "Golden Retriever");
+
+        myDog.eat(); 
+
+        myDog.bark(); 
+        myDog.displayDetails();
+    }
+}
+
+
 10. Abstract Class
     An abstract class is a class declared with the abstract keyword that cannot be instantiated directly. 
     It can contain both abstract methods (without implementation) and concrete methods (with implementation). 
     Abstract classes are used when multiple related classes share common behavior but require different implementations for certain 
     methods. A child class extends the abstract class and provides implementations for all abstract methods. This helps achieve abstraction and code reuse.
 
+// 1. The Abstract Parent Class (Cannot be instantiated directly)
+abstract class Vehicle {
+    protected String brand;
+
+    // Concrete Constructor: Allowed in abstract classes to initialize fields
+    public Vehicle(String brand) {
+        this.brand = brand;
+    }
+
+    // Concrete Method: Shared behavior inherited by all child classes
+    public void startEngine() {
+        System.out.println("The engine of the " + brand + " starts: Vroom!");
+    }
+
+    // Abstract Method: No body {} here. 
+    // Forces every child class to provide its own specific implementation.
+    public abstract void fuelUp();
+}
+
+// 2. Child Class 1: Extends the abstract class
+class GasCar extends Vehicle {
+    public GasCar(String brand) {
+        super(brand);
+    }
+
+    // Must provide implementation for the abstract method
+    @Override
+    public void fuelUp() {
+        System.out.println("Filling the " + brand + " with petrol at the gas station.");
+    }
+}
+
+// 3. Child Class 2: Extends the same abstract class but implements differently
+class ElectricCar extends Vehicle {
+    public ElectricCar(String brand) {
+        super(brand);
+    }
+
+    // Must provide implementation for the abstract method
+    @Override
+    public void fuelUp() {
+        System.out.println("Plugging the " + brand + " into a fast charger.");
+    }
+}
+
+// 4. Execution Main Class
+public class Main {
+    public static void main(String[] args) {
+        // ❌ Direct instantiation is forbidden. This line would cause a compile error:
+        // Vehicle myVehicle = new Vehicle("Generic"); 
+
+        // ✅ Create objects using the concrete child classes
+        Vehicle myGasCar = new GasCar("Toyota");
+        Vehicle myEv = new ElectricCar("Tesla");
+
+        // Code Reuse: Both use the exact same concrete method from the parent
+        myGasCar.startEngine();
+        myEv.startEngine();
+
+        System.out.println("-----------------------------------");
+
+        // Specific Implementation: Each runs its own overridden version
+        myGasCar.fuelUp();
+        myEv.fuelUp();
+    }
+}
+
+
 11. interface
     An interface is a contract that defines method declarations without specifying their implementation. Any class that implements the interface 
     must provide implementations for all its methods. Interfaces help achieve abstraction, loose coupling, polymorphism, and multiple inheritance of behavior. 
     In Spring Boot, interfaces are commonly used with Dependency Injection, where services depend on interfaces rather than concrete implementations.
+
+    // Abstract Class
+abstract class Animal {
+    // Shared state (Variables allowed here!)
+    String name;
+
+    // Concrete Method (Shared logic)
+    public void sleep() {
+        System.out.println("Zzz...");
+    }
+
+    // Abstract Method (No body {}, child MUST implement this)
+    public abstract void makeSound();
+}
+
+// Child Class
+class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Meow!");
+    }
+}
+
+// Execution
+public class Main {
+    public static void main(String[] args) {
+        Cat myCat = new Cat();
+        myCat.sleep();      // Inherited from Animal: Prints "Zzz..."
+        myCat.makeSound();  // Overridden by Cat: Prints "Meow!"
+    }
+}
+
+12 Static and final
+    static : Only one copy exists in memory, shared by all objects.
+    final : cannot be modified
 
 
 #####Spring Boot##########
@@ -83,12 +251,18 @@
     the right table, and FULL OUTER JOIN returns all rows from both tables. For example, in an e-commerce application, an 
     INNER JOIN can be used to fetch customers who placed orders, while a LEFT JOIN can be used to fetch all customers including 
     those who have not placed any orders.
+    https://medium.com/@johnnyJK/understanding-sql-joins-a-comprehensive-guide-88bab3457270
 
 2. Primary Key vs Unique Key
     A Primary Key uniquely identifies each row in a table and cannot contain NULL values. A table can have only one Primary Key.
      A Unique Key also enforces uniqueness but is not the main identifier of the table. Multiple Unique Keys can exist in a table, 
      and depending on the database, a Unique Key may allow NULL values. For example, customer_id is typically a Primary Key, while 
      email and phone_number, adhar_number are often Unique Keys.
+
+6. Keyword 
+ON To connect/join two different tables together.
+WHERE To filter your final rows based on a condition.
+IN To match a column against a list of multiple values.
 
 3. How to do you connect multiple database in a micro service
     - In Spring Boot, multiple databases can be connected by defining separate datasource configurations. 
