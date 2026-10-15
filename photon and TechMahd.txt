@@ -1,0 +1,10 @@
+photon
+- exaplain encapsulation
+- polymorphisim
+- Multi threading program
+- use of interface
+
+Tech Mahindra
+-  FE - hoisting, handle slow api
+-  let, var and const
+- 
